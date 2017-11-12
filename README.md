@@ -64,7 +64,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 8 rows in set
 ```
 
-## 2-3 2-2 と同じ意味の SELECT
+## list 2-3. 2-2 と同じ意味の SELECT
 
 ```
 > Shohin.select(:shohin_id, :shohin_mei, :shohin_bunrui, :hanbai_tanka, :shiire_tanka, :torokubi)
@@ -85,7 +85,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 
 ```
 
-## 2-4 列に別名をつける
+## list 2-4. 列に別名をつける
 
 ```
 > Shohin.select('shohin_id as id, shohin_mei name, shiire_tanka as tanka')
@@ -105,7 +105,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 8 rows in set
 ```
 
-## 2-5 列に日本語で別名をつける
+## list 2-5. 列に日本語で別名をつける
 
 ```
 > Shohin.select('shohin_id as "商品ID", shohin_mei as "商品名", shiire_tanka as "仕入れ単価"')
@@ -126,7 +126,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 
 ```
 
-＃# 2-6 定数を出力
+＃# list 2-6. 定数を出力
 
 ```
 > Shohin.select("'商品' as mojiretsu, 38 as kazu, '2009-02-24' as hizuke, shohin_id, shohin_mei")
@@ -164,7 +164,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 8 rows in set
 ```
 
-## 2-7 DISTINCT を使って shohin_bunrui 列の重複を除いた形で出力
+## list 2-7. DISTINCT を使って shohin_bunrui 列の重複を除いた形で出力
 
 ```
 > Shohin.select(:shohin_bunrui).distinct
@@ -180,7 +180,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 
 ```
 
-## 2-8 NULLを含む列に DISTIINCT をつけた場合
+## list 2-8. NULLを含む列に DISTIINCT をつけた場合
 
 ```
 > Shohin.select(:shiire_tanka).distinct
@@ -198,7 +198,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 6 rows in set
 ```
 
-## 2-9 複数の列に DISTINCTを指定した場合
+## list 2-9. 複数の列に DISTINCTを指定した場合
 
 ```
 > Shohin.select(:shohin_bunrui, :torokubi).distinct
@@ -217,7 +217,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 7 rows in set
 ```
 
-## 2-10 shohin_bunrui が 衣服の行を選択する
+## list 2-10. shohin_bunrui が 衣服の行を選択する
 
 ```
 > Shohin.where(shohin_bunrui: '衣服')
@@ -231,7 +231,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 2 rows in set
 ```
 
-## 2-11 検索条件の列を出力しない
+## list 2-11. 検索条件の列を出力しない
 
 ```
 > Shohin.where(shohin_bunrui: '衣服').select(:shohin_mei)
@@ -245,12 +245,11 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 2 rows in set
 ```
 
-## 2-12
+## list 2-12.
 
-## 2-13
+## list 2-13.
 
-
-## 2-17 計算式を書く
+## list 2-17. 計算式を書く
 
 ```
     > Shohin.select('shohin_mei, hanbai_tanka, hanbai_tanka * 2 as "hanbai_tanka * 2"')
@@ -270,7 +269,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
     8 rows in set
 ```
 
-## 2-18 hanbai_tanka が 500 の行を選択
+## list 2-18. hanbai_tanka が 500 の行を選択
 
 ```
 > Shohin.where(hanbai_tanka: 500)
@@ -284,7 +283,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 2 rows in set
 ```
 
-## 2-19 hanbai_tanka が 500 でない行を選択
+## list 2-19. hanbai_tanka が 500 でない行を選択
 
 ```
 > Shohin.where.not(hanbai_tanka: 500)
@@ -302,7 +301,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 6 rows in set
 ```
 
-## 2-20 販売単価が 1000 円以上の行を選択
+## list 2-20. 販売単価が 1000 円以上の行を選択
 
 ```
 > Shohin.where('hanbai_tanka >= ?', 1000)
@@ -318,7 +317,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 4 rows in set
 ```
 
-## 2-21 登録日が 2009-09-27 より前の行を選択
+## list 2-21. 登録日が 2009-09-27 より前の行を選択
 
 ```
 > Shohin.where('torokubi < ?', '2009-09-27')
@@ -336,7 +335,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 6 rows in set
 ```
 
-## 2-22 条件には計算式も書ける
+## list 2-22. 条件には計算式も書ける
 
 ```
 > Shohin.where('hanbai_tanka - shiire_tanka >= ?', 500)
@@ -351,9 +350,9 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 3 rows in set
 ```
 
-## 2-23
+## list 2-23.
 
-## 2-24 '2' より大きいデータを選択する
+## list 2-24. '2' より大きいデータを選択する
 
 ```
 > Char.where('chr > ?', '2')
@@ -367,7 +366,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 2 rows in set
 ```
 
-## 2-25 仕入単価が 2800 でないの行を選択
+## list 2-25. 仕入単価が 2800 でないの行を選択
 
 ```
 > Shohin.where.not(shiire_tanka: 2800)
@@ -383,7 +382,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 4 rows in set
 ```
 
-## 2-27 間違っている SELECT
+## list 2-27. 間違っている SELECT
 
 ```
 > Shohin.where('shiire_tanka=NULL')
@@ -391,8 +390,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 => []
 ```
 
-
-## 2-28 NULL の行を選択
+## list 2-28. NULL の行を選択
 
 ```
 > Shohin.where(shiire_tanka: nil)
@@ -406,7 +404,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 2 rows in set
 ```
 
-## 2-29 NULL でない行を選択
+## list 2-29. NULL でない行を選択
 
 ```
 > Shohin.where.not(shiire_tanka: nil)
@@ -424,7 +422,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 6 rows in set
 ```
 
-## 2-30 販売単価が 1000 以上を選択
+## list 2-30. 販売単価が 1000 以上を選択
 
 ```
 > Shohin.where('hanbai_tanka>=?', 1000)
@@ -440,7 +438,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 4 rows in set
 ```
 
-## 2-31 not を指定
+## list 2-31. not を指定
 
 ```
 > Shohin.where.not('hanbai_tanka>=?', 1000)
@@ -456,7 +454,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 4 rows in set
 ```
 
-## 2-32  2-31 と同じ
+## list 2-32. 2-31 と同じ
 
 ```
 > Shohin.where('hanbai_tanka<?', 1000)
@@ -472,7 +470,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 4 rows in set
 ```
 
-## 2-33 where に and を使う
+## list 2-33. where に and を使う
 
 ```
 > Shohin.where('hanbai_tanka > ?', 3000).where(shohin_bunrui: 'キッチン用品')
@@ -485,7 +483,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 1 row in set
 ```
 
-## 2-34 where に or を使う
+## list 2-34. where に or を使う
 
 ```
 > Shohin.where('hanbai_tanka > ?', 3000).or(Shohin.where(shohin_bunrui: 'キッチン用品'))
@@ -502,9 +500,9 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 5 rows in set
 ```
 
-## 2-35
+## list 2-35.
 
-## 2-36
+## list 2-36.
 
 ```
 > Shohin.find_by_sql('select * from Shohin where shohin_bunrui="事務用品" and (torokubi="2009-09-11" or torokubi="2009-09-20")')
@@ -517,7 +515,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 1 row in set
 ```
 
-## 3-1 全行を数える
+## list 3-1. 全行を数える
 
 ```
 > Shohin.count
@@ -525,7 +523,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 => 8
 ```
 
-## 3-1 NULL を除外して数える
+## list 3-2. NULL を除外して数える
 
 ```
 > Shohin.count(:shiire_tanka)
@@ -533,10 +531,9 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 => 6
 ```
 
-## 3-3 NULLを含む列を引数にすると、count(*) と count(列名)の結果は異なる
+## list 3-3. NULLを含む列を引数にすると count(＊) と count(列名)の結果は異なる
 
-
-## 3-4 販売単価の合計
+## list 3-4. 販売単価の合計
 
 ```
 > Shohin.sum(:hanbai_tanka)
@@ -544,7 +541,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 => 16780
 ```
 
-## 3-5 販売単価と仕入単価の合計
+## list 3-5. 販売単価と仕入単価の合計
 
 ```
 > Shohin.select('sum(hanbai_tanka)', 'sum(shiire_tanka)')
@@ -557,7 +554,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 1 row in set
 ```
 
-## 3-6 販売単価の平均
+## list 3-6. 販売単価の平均
 
 ```
 > Shohin.average(:hanbai_tanka)
@@ -569,7 +566,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 => 2097
 ```
 
-## 3-7 販売単価と仕入れ単価の平均
+## list 3-7. 販売単価と仕入れ単価の平均
 
 ```
 > Shohin.select('avg(hanbai_tanka)', 'avg(shiire_tanka)')
@@ -582,7 +579,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 1 row in set
 ```
 
-## 3-8 販売単価の最大、仕入単価の最小
+## list 3-8. 販売単価の最大、仕入単価の最小
 
 ```
 > Shohin.select('max(hanbai_tanka)', 'min(shiire_tanka)')
@@ -595,7 +592,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 1 row in set
 ```
 
-## 3-9 登録日の最大、最小
+## list 3-9. 登録日の最大、最小
 
 ```
 > Shohin.select('max(torokubi)', 'min(torokubi)')
@@ -608,7 +605,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 1 row in set
 ```
 
-## 3-10 値の重複をのぞいて行数を数える
+## list 3-10. 値の重複をのぞいて行数を数える
 
 ```
 > Shohin.distinct.count(:shohin_bunrui)
@@ -620,9 +617,9 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 => 3
 ```
 
-## 3-11
+## list 3-11.
 
-## 3-12 DISTINCT の有無での SUM の違い
+## list 3-12. DISTINCT の有無での SUM の違い
 
 ```
 > Shohin.distinct(:hanbai_tanka).sum(:hanbai_tanka)
@@ -643,7 +640,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 1 row in set
 ```
 
-## 3-13 商品分類ごとの数
+## list 3-13. 商品分類ごとの数
 
 ```
 > Shohin.group(:shohin_bunrui).count
@@ -664,7 +661,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 3 rows in set
 ```
 
-## 3-14 仕入れ単価ごとの行数
+## list 3-14. 仕入れ単価ごとの行数
 
 ```
 > Shohin.group(:shiire_tanka).count
@@ -686,7 +683,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 6 rows in set
 ```
 
-## 3-15 where と group の併用
+## list 3-15. where と group の併用
 
 ```
 > Shohin.where(shohin_bunrui: '衣服').group(:shiire_tanka).select(:shiire_tanka, 'count(*)')
@@ -702,11 +699,11 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 
 ```
 
-## 3-16
+## list 3-16.
 
-## 3-17
+## list 3-17.
 
-## 3-18 商品分類ごとに行数を数える
+## list 3-18. 商品分類ごとに行数を数える
 
 ```
 > Shohin.group(:shohin_bunrui).select(:shohin_bunrui, 'count(*)')
@@ -721,9 +718,9 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 3 rows in set
 ```
 
-## 3-19
+## list 3-19.
 
-## 3-A DISTINCT と GROUP BY の動作
+## list 3-A. DISTINCT と GROUP BY の動作
 
 ```
 > Shohin.select(:shohin_bunrui).distinct
@@ -749,7 +746,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 3 rows in set
 ```
 
-## 3-20 商品分類で集約したグループから「 含まれる行数が2 行」のものを選択する
+## list 3-20. 商品分類で集約したグループから「 含まれる行数が2 行」のものを選択する
 
 ```
 > Shohin.group(:shohin_bunrui).select('count(*)', :shohin_bunrui).having('count(*)=2')
@@ -763,7 +760,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 2 rows in set
 ```
 
-## 3-22 having を指定しなかった場合
+## list 3-22. having を指定しなかった場合
 
 ```
 > Shohin.group(:shohin_bunrui).select('count(*)', :shohin_bunrui)
@@ -778,7 +775,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 3 rows in set
 ```
 
-## 3-23 having を指定した場合
+## list 3-23. having を指定した場合
 
 ```
 > Shohin.group(:shohin_bunrui).select(:shohin_bunrui, 'avg(hanbai_tanka)').having('avg(hanbai_tanka) >= ?', 2500)
@@ -792,10 +789,9 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 2 rows in set
 ```
 
-## 3-24
+## list 3-24.
 
-
-## 3-25 条件を WEHER 句に書いた場合
+## list 3-25. 条件を WEHER 句に書いた場合
 
 ```
 > Shohin.group(:shohin_bunrui).having(shohin_bunrui: '衣服').select(:shohin_bunrui, 'count(*)')
@@ -808,7 +804,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 1 row in set
 ```
 
-## 3-26 条件を WEHER 句に書いた場合
+## list 3-26. 条件を WEHER 句に書いた場合
 
 ```
 > Shohin.group(:shohin_bunrui).where(shohin_bunrui: '衣服').select(:shohin_bunrui, 'count(*)')
@@ -821,7 +817,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 1 row in set
 ```
 
-## 3.27 商品ID、 商品名、 販売単価、 仕入単価を表示する
+## list 3.27. 商品ID、 商品名、 販売単価、 仕入単価を表示する
 
 ```
 > Shohin.select(:shohin_id, :shohin_mei, :hanbai_tanka, :shiire_tanka)
@@ -841,7 +837,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 8 rows in set
 ```
 
-## 3-28 販売単価の低い順（昇順）に並べる
+## list 3-28. 販売単価の低い順（昇順）に並べる
 
 ```
 > Shohin.select(:shohin_id, :shohin_mei, :hanbai_tanka, :shiire_tanka).order(hanbai_tanka: :asc)
@@ -862,7 +858,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 ```
 
 
-## 3-28 販売単価の高いい順（降順）に並べる
+## list 3-28. 販売単価の高いい順（降順）に並べる
 
 ```
 > Shohin.select(:shohin_id, :shohin_mei, :hanbai_tanka, :shiire_tanka).order(hanbai_tanka: :desc)
@@ -882,7 +878,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 8 rows in set
 ```
 
-## 3-30 販売単価と商品IDの昇順に並べる
+## list 3-30. 販売単価と商品IDの昇順に並べる
 
 ```
 > Shohin.select(:shohin_id, :shohin_mei, :hanbai_tanka, :shiire_tanka).order(hanbai_tanka: :asc, shohin_id: :asc)
@@ -902,7 +898,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 8 rows in set
 ```
 
-## 3-31 　仕入単価の昇順に並べる
+## list 3-31. 仕入単価の昇順に並べる
 
 ```
 > Shohin.select(:shohin_id, :shohin_mei, :hanbai_tanka, :shiire_tanka).order(shiire_tanka: :asc)
@@ -923,7 +919,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 ```
 
 
-## 3-32 ORDER BY 句では列の別名が使える
+## list 3-32. ORDER BY 句では列の別名が使える
 
 ```
 > Shohin.select('shohin_id, shohin_mei, hanbai_tanka AS ht, shiire_tanka').order('ht, shohin_id')
@@ -943,7 +939,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 8 rows in set
 ```
 
-## 3-33 SELECT 句に含まれていない列も ORDER RY 句に指定できる
+## list 3-33. SELECT 句に含まれていない列も ORDER RY 句に指定できる
 
 ```
 > Shohin.select(:shohin_mei, :hanbai_tanka, :shiire_tanka).order(shohin_id: :asc)
@@ -963,7 +959,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 8 rows in set
 ```
 
-## 3-34 集約関数も ORDER BY句で利用可能
+## list 3-34. 集約関数も ORDER BY句で利用可能
 
 ```
 > Shohin.group(:shohin_bunrui).select(:shohin_bunrui, 'count(*)').order('count(*) desc')
@@ -978,7 +974,7 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 3 rows in set
 ```
 
-## 3-35 ORDER BY 句では列番号を指定できる
+## list 3-35. ORDER BY 句では列番号を指定できる
 
 ```
 > Shohin.group(:shohin_bunrui).select(:shohin_bunrui, 'count(*)').order('3 desc, 1')
@@ -986,51 +982,51 @@ Shohin Load (0.6ms)  SELECT `Shohin`.* FROM `Shohin`
 Hirb Error: Mysql2::Error: Unknown column '3' in 'order clause': SELECT `Shohin`.`shohin_bunrui`, count(*) FROM `Shohin` GROUP BY `Shohin`.`shohin_bunrui` ORDER BY 3 desc, 1
 ```
 
-## 4-1
+## list 4-1.
 
-## 4-2
+## list 4-2.
 
-## 4-3
+## list 4-3.
 
-## 4-4
+## list 4-4.
 
-## 4-5
+## list 4-5.
 
-## 4-6
+## list 4-6.
 
-## 4-7
+## list 4-7.
 
-## 4-8
+## list 4-8.
 
-## 4-9
+## list 4-9.
 
-## 4-10
+## list 4-10.
 
-## 4-11
+## list 4-11.
 
-## 4-12
+## list 4-12.
 
-## 4-13
+## list 4-13.
 
-## 4-14
+## list 4-14.
 
-## 4-15
+## list 4-15.
 
-## 4-16
+## list 4-16.
 
-## 4-17
+## list 4-17.
 
-## 4-18
+## list 4-18.
 
-## 4-19
+## list 4-19.
 
-## 4-20
+## list 4-20.
 
-## 4-21
+## list 4-21.
 
-## 4-22
+## list 4-22.
 
-## 5-1 ビューなら SELECT 文だけを保存すれば良い
+## list 5-1. ビューなら SELECT 文だけを保存すれば良い
 
 ```
 > Shohin.group(:shohin_bunrui).select(:shohin_bunrui, 'sum(hanbai_tanka)', 'sum(shiire_tanka)')
@@ -1045,7 +1041,7 @@ Hirb Error: Mysql2::Error: Unknown column '3' in 'order clause': SELECT `Shohin`
 3 rows in set
 ```
 
-## 5-2 ShohinSum ビュー
+## list 5-2. ShohinSum ビュー
 
 ```
 マイグレーションで作成
@@ -1060,7 +1056,7 @@ def self.up
 end
 ```
 
-## 5-3 ビューを使う
+## list 5-3. ビューを使う
 
 ```
 > ShohinSum.select(:shohin_bunrui, :count_shohin)
@@ -1075,7 +1071,7 @@ end
 3 rows in set
 ```
 
-## 5-4 ShohinSumJim ビュー
+## list 5-4. ShohinSumJim ビュー
 
 ```
 execute <<-SQL
@@ -1087,11 +1083,11 @@ execute <<-SQL
 SQL
 ```
 
-## 5-5
+## list 5-5.
 
-## 5-6
+## list 5-6.
 
-## 5-7 ビューの削除
+## list 5-7. ビューの削除
 
 ```
 def self.down
@@ -1101,15 +1097,15 @@ def self.down
 end
 ```
 
-## 5-8
+## list 5-8.
 
-## 5-9
+## list 5-9.
 
-## 5-10
+## list 5-10.
 
 TODO
 
-## 5-11 平均の販売単価を求めるスカラ・サブクエリ
+## list 5-11. 平均の販売単価を求めるスカラ・サブクエリ
 
 ```
 > Shohin.average(:hanbai_tanka)
@@ -1117,7 +1113,7 @@ TODO
 => 0.20975e4
 ```
 
-## 5-12 販売単価（hanbai_ tanka）が商品すべての販売単価平均より高い商品
+## list 5-12. 販売単価（hanbai_ tanka）が商品すべての販売単価平均より高い商品
 
 ```
 > Shohin.where("hanbai_tanka > ?", Shohin.average(:hanbai_tanka)).select(:shohin_id, :shohin_mei, :hanbai_tanka)
@@ -1133,7 +1129,7 @@ TODO
 3 rows in set
 ```
 
-## 5-13 SELECT 句 で スカラ・サブクエリ を 使う
+## list 5-13. SELECT 句 で スカラ・サブクエリ を 使う
 
 ```
 > Shohin.select(
@@ -1156,7 +1152,7 @@ TODO
  8 rows in set
 ```
 
-## 5-14 HAVING句でスカラ・サブクエリを使う
+## list 5-14. HAVING句でスカラ・サブクエリを使う
 
 ```
 Shohin.group(:shohin_bunrui).having('avg(hanbai_tanka) > (Select AVG(hanbai_tanka) FROM Shohin)').select(:shohin_bunrui, 'AVG(hanbai_tanka)')
@@ -1170,7 +1166,7 @@ Shohin Load (1.4ms)  SELECT `Shohin`.`shohin_bunrui`, AVG(hanbai_tanka) FROM `Sh
 2 rows in set
 ```
 
-## 5-15 商品分類別に平均価格を求める
+## list 5-15. 商品分類別に平均価格を求める
 
 ```
 )> Shohin.group(:shohin_bunrui).select('shohin_bunrui, avg(hanbai_tanka)')
@@ -1189,17 +1185,17 @@ Shohin Load (1.4ms)  SELECT `Shohin`.`shohin_bunrui`, AVG(hanbai_tanka) FROM `Sh
 => {"キッチン用品"=>0.2795e4, "事務用品"=>0.3e3, "衣服"=>0.25e4}
 ```
 
-## 5-16 相関サブクエリで商品分類ごとに平均販売単価と比較する
+## list 5-16. 相関サブクエリで商品分類ごとに平均販売単価と比較する
 
 TODO
 
-## 6-*
+## list 6-＊.
 
-## 7-1
+## list 7-1.
 
-## 7-2
+## list 7-2.
 
-## 7-3 　 UNION による テーブル の 足し算
+## list 7-3. UNION による テーブル の 足し算
 
 ```
 > Shohin.find_by_sql('SELECT shohin_id, shohin_mei FROM Shohin UNION SELECT shohin_id, shohin_mei FROM Shohin2')
@@ -1221,7 +1217,7 @@ TODO
 10 rows in set
 ```
 
-## 7-5 重複行を排除しない
+## list 7-5. 重複行を排除しない
 
 ```
 > Shohin.find_by_sql('SELECT shohin_id, shohin_mei FROM Shohin UNION ALL SELECT shohin_id, shohin_mei FROM Shohin2')
@@ -1246,14 +1242,13 @@ TODO
 13 rows in set
 ```
 
-## 7-6 INTERSECTによるテーブル共通部分の選択
+## list 7-6. INTERSECTによるテーブル共通部分の選択
 
-## 7-7 EXCEPTによるレコードの引き算
+## list 7-7. EXCEPTによるレコードの引き算
 
-## 7-8 どちらからどちらを引くかで結果が異なる
+## list 7-8. どちらからどちらを引くかで結果が異なる
 
-
-## 7-9 2つのテーブルを内部結合する
+## list 7-9. 2つのテーブルを内部結合する
 
 ```
 > TenpoShohin.joins(:shohin).select(:tenpo_id, :tenpo_mei, :shohin_id, :shohin_mei, :hanbai_tanka)
@@ -1278,7 +1273,7 @@ TODO
 13 rows in set
 ```
 
-## 7-10 内部結合とWHERE句を組み合わせて使う
+## list 7-10. 内部結合とWHERE句を組み合わせて使う
 
 ```
 > TenpoShohin.joins(:shohin).where(tenpo_id: '000A').select(:tenpo_id, :tenpo_mei, :shohin_id, :shohin_mei, :hanbai_tanka)
@@ -1293,7 +1288,7 @@ TODO
 3 rows in set
 ```
 
-## 7-11 2つのテーブルを外部結合する
+## list 7-11. 2つのテーブルを外部結合する
 
 ```
 > TenpoShohin.joins("TenpoShohin right outer join Shohin on Shohin.shohin_id=TenpoShohin.shohin_id").select(:tenpo_id, :tenpo_mei, 'Shohin.shohin_id', :shohin_mei, :hanbai_tanka)
@@ -1321,7 +1316,7 @@ TODO
 15 rows in set
 ```
 
-## 7-12 テーブルの左右を入れ替えても外部結合の結果は同じ
+## list 7-12. テーブルの左右を入れ替えても外部結合の結果は同じ
 
 ```
 > > Shohin.joins("Shohin left outer join TenpoShohin on Shohin.shohin_id=TenpoShohin.shohin_id").select(:tenpo_id, :tenpo_mei, 'Shohin.shohin_id', :shohin_mei, :hanbai_tanka)
@@ -1350,9 +1345,9 @@ TODO
 
 ```
 
-## 7-13
+## list 7-13.
 
-## 7-14 3つのテーブルを内部結合する
+## list 7-14. 3つのテーブルを内部結合する
 
 ```
 > TenpoShohin.joins(:shohin => :zaiko_shohins).where(:ZaikoShohin => { souko_id: 'S001'}).select(:tenpo_id, :tenpo_mei, :shohin_id, :shohin_mei)
@@ -1378,7 +1373,7 @@ TenpoShohin Load (0.7ms)  SELECT `TenpoShohin`.`tenpo_id`, `TenpoShohin`.`tenpo_
 13 rows in set
 ```
 
-## 7-15 2 つのテーブルをクロス結合する
+## list 7-15. 2 つのテーブルをクロス結合する
 
 ```
 > TenpoShohin.find_by_sql('select * from TenpoShohin cross join Shohin')
@@ -1504,3 +1499,5 @@ TenpoShohin Load (0.8ms)  select * from TenpoShohin cross join Shohin
 ```
 
 練習問題
+
+TODO
