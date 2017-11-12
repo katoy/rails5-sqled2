@@ -1048,7 +1048,7 @@ Hirb Error: Mysql2::Error: Unknown column '3' in 'order clause': SELECT `Shohin`
 ## 5-2 ShohinSum ビュー
 
 ```
-あマイグレーションで作成
+マイグレーションで作成
 def self.up
   execute <<-SQL
     CREATE VIEW ShohinSum (shohin_bunrui, count_shohin)
@@ -1085,7 +1085,7 @@ execute <<-SQL
   FROM ShohinSum
   WHERE shohin_bunrui = '事務用品'
 SQL
-***
+```
 
 ## 5-5
 
