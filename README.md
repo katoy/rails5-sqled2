@@ -5,6 +5,8 @@
 準備
 ----
 
+    Mac で作成例：
+
     $ rails new rails5-sqled2 --api -d mysql
     $ cd rails5-sqled2
     ( $ xcode-select --install )
@@ -1500,4 +1502,52 @@ TenpoShohin Load (0.8ms)  select * from TenpoShohin cross join Shohin
 
 練習問題
 
-TODO
+## 2.1 Shohin から、「 登録日（torokubi）が 2009 年 4 月 28 日 以降」である商品を選択する
+
+```
+> Shohin.where('torokubi <= ?','2009-04-28')
+  Shohin Load (0.7ms)  SELECT `Shohin`.* FROM `Shohin` WHERE (torokubi <= '2009-04-28')
++-----------+------------+---------------+--------------+--------------+------------+
+| shohin_id | shohin_mei | shohin_bunrui | hanbai_tanka | shiire_tanka | torokubi   |
++-----------+------------+---------------+--------------+--------------+------------+
+| 0005      | 圧力鍋     | キッチン用品  | 6800         | 5000         | 2009-01-15 |
+| 0007      | おろしがね | キッチン用品  | 880          | 790          | 2008-04-28 |
++-----------+------------+---------------+--------------+--------------+------------+
+2 rows in set
+```
+
+## 2.2
+
+## 2.3 販売単価（hanbai_ tanka）が仕入単価（shiire_tanka）より 500 円以上高い」商品を選択する
+
+```
+> Shohin.where('hanbai_tanka >= shiire_tanka + 500')
+> Shohin.where('hanbai_tanka - 500 >= shiire_tanka')
+> Shohin.where('hanbai_tanka - shiire_tanka >= 500')
+
+どれも
++-----------+----------------+---------------+--------------+--------------+------------+
+| shohin_id | shohin_mei     | shohin_bunrui | hanbai_tanka | shiire_tanka | torokubi   |
++-----------+----------------+---------------+--------------+--------------+------------+
+| 0001      | Tシャツ        | 衣服          | 1000         | 500          | 2009-09-20 |
+| 0003      | カッターシャツ | 衣服          | 4000         | 2800         |            |
+| 0005      | 圧力鍋         | キッチン用品  | 6800         | 5000         | 2009-01-15 |
++-----------+----------------+---------------+--------------+--------------+------------+
+3 rows in set
+```
+
+## 2.4 から、「 販売単価を 10％ 引きにしても利益が 100 円 より高い事務用品とキッチン用品」を 選択
+
+```
+> Shohin.where(shohin_bunrui: ['事務用品', 'キッチン用品']).where('hanbai_tanka * 0.9 - shiire_tanka > 100').select('shohin_mei, shohin_bunrui, shiire_tanka, hanbai_tanka AS "定価", hanbai_tanka * 0.9 AS "10% OFF", hanbai_tanka * 0.9 - shiire_tanka AS rieki')
+  Shohin Load (0.5ms)  SELECT shohin_mei, shohin_bunrui, shiire_tanka, hanbai_tanka AS "定価", hanbai_tanka * 0.9 AS "10% OFF", hanbai_tanka * 0.9 - shiire_tanka AS rieki FROM `Shohin` WHERE `Shohin`.`shohin_bunrui` IN ('事務用品', 'キッチン用品') AND (hanbai_tanka * 0.9 - shiire_tanka > 100)
++-----------+--------------+---------------+--------------+------+---------+--------+
+| shohin_id | shohin_mei   | shohin_bunrui | shiire_tanka | 定価 | 10% OFF | rieki  |
++-----------+--------------+---------------+--------------+------+---------+--------+
+|           | 穴あけパンチ | 事務用品      | 320          | 500  | 450.0   | 130.0  |
+|           | 圧力鍋       | キッチン用品  | 5000         | 6800 | 6120.0  | 1120.0 |
++-----------+--------------+---------------+--------------+------+---------+--------+
+2 rows in set
+```
+
+## 3-1
