@@ -10,9 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171203153858) do
+ActiveRecord::Schema.define(version: 20171205153858) do
 
   create_table "Chars", primary_key: "chr", id: :string, limit: 3, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  end
+
+  create_table "ExpenseCategories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name", limit: 20, null: false
+  end
+
+  create_table "Household", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.date "day", null: false
+    t.string "item", limit: 20, null: false
+    t.string "memo", limit: 100
+    t.integer "income", default: 0, null: false
+    t.integer "outcome", default: 0, null: false
+  end
+
+  create_table "HouseholdArchive", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.date "day", null: false
+    t.string "item", limit: 20, null: false
+    t.string "memo", limit: 100
+    t.integer "income", default: 0, null: false
+    t.integer "outcome", default: 0, null: false
+  end
+
+  create_table "Householdx", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.date "day", null: false
+    t.integer "item_id"
+    t.string "memo", limit: 100
+    t.integer "income", default: 0, null: false
+    t.integer "outcome", default: 0, null: false
+  end
+
+  create_table "Items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name", limit: 20, null: false
+    t.string "memo", limit: 100
+    t.integer "expense_category_id"
   end
 
   create_table "Shohin", primary_key: "shohin_id", id: :string, limit: 4, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -45,6 +79,15 @@ ActiveRecord::Schema.define(version: 20171203153858) do
     t.integer "hanbai_tanka"
     t.integer "shiire_tanka", default: 0
     t.date "torokubi"
+  end
+
+  create_table "Summary", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "item", limit: 20, null: false
+    t.integer "total", default: 0, null: false
+    t.integer "average", default: 0, null: false
+    t.integer "min", default: 0, null: false
+    t.integer "max", default: 0, null: false
+    t.integer "count", default: 0, null: false
   end
 
   create_table "TenpoShohin", primary_key: ["tenpo_id", "shohin_id"], force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

@@ -1,11 +1,10 @@
 # == Schema Information
 #
-# Table name: TenpoShohin
+# Table name: ZaikoShohin
 #
-#  tenpo_id  :string(4)        not null
-#  tenpo_mei :string(200)      not null
-#  shohin_id :string(4)        not null
-#  suryo     :integer          not null
+#  souko_id    :string(4)        not null
+#  shohin_id   :string(4)        not null
+#  zaiko_suryo :integer          not null
 #
 
 class ZaikoShohin < ApplicationRecord
